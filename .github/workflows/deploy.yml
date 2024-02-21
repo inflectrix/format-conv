@@ -12,6 +12,7 @@ jobs:
         run: cp -r ./static/. pkg
       - uses: actions/upload-artifact@v4
         with:
+          name: github-pages
           path: ./pkg/
 
   deploy:
@@ -26,6 +27,5 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/download-artifact@v4
       - uses: actions/deploy-pages@v4
         id: deployment
