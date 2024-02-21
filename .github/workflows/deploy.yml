@@ -8,16 +8,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: cargo-bins/cargo-binstall@main
-      - name: Install wasm-pack
-        run: cargo binstall wasm-pack -y
-      - name: Build using wasm-pack
-        run: wasm-pack build --target web --release
-      - name: Remove unneccessary gitignore
-        run: rm ./pkg/.gitignore
+      - uses: actions-rs/toolchain@v1
+        with:
+          target: wasm32-unknown-unknown
+      - name: Build WASM binary
+        run: cargo build --release --target wasm32-unknown-unknown
+      - name: Install wasm-bindgen
+        run: cargo binstall wasm-bindgen-cli -y
+      - name: Generate JS bindings for WASM
+        run: wasm-bindgen --browser --out-dir dist ./target/wasm32-unknown-unknown/release/format_conv.wasm
+      - name: Copy files from static
+        run: cp -r ./static/. ./dist/
       - uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: ./pkg/
+          path: ./dist/
 
   deploy:
     runs-on: ubuntu-latest
