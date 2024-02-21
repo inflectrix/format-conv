@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: cargo-bins/cargo-binstall@main
       - run: rustup target add wasm32-unknown-unknown
-      - name: Build WASM binary
+      - name: Build WASM
         run: cargo build --release --target wasm32-unknown-unknown
       - name: Install wasm-bindgen
         run: cargo binstall wasm-bindgen-cli -y
