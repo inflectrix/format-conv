@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use wasm_bindgen::prelude::*;
 use js_sys::Error;
-use toml::Value;
+pub use toml::Value;
 
 type JsResult = Result<JsValue, Error>;
 
@@ -59,6 +59,7 @@ pub fn des_lexpr(s: String) -> JsResult {
 pub fn convert_to_all(d: JsValue) -> JsResult {
     let v: Value = serde_wasm_bindgen::from_value(d).unwrap();
 
+    // TODO maybe use struct for this.
     let mut m = HashMap::new();
 
     m.insert("json", serde_json::to_string(&v).unwrap());
@@ -69,4 +70,48 @@ pub fn convert_to_all(d: JsValue) -> JsResult {
     m.insert("lexpr", serde_lexpr::to_string(&v).unwrap());
 
     Ok(serde_wasm_bindgen::to_value(&m).unwrap())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test() {
+        let s = r#"
+        {
+            "a": 1,
+            "b": 34.2342,
+            "c": true,
+            "d": {
+                "test": [1, 2, 3, 4, 5],
+                "test2": [
+                    {
+                        "test3": "a"
+                    },
+                    {
+                        "test3": "b"
+                    }
+                ]
+            }
+        }
+        "#;
+
+        let v: Value = serde_json::from_str(s).unwrap();
+
+        let s = toml::to_string(&v).unwrap();
+        println!("TOML:\n{}\n", s);
+
+        let s = ron::to_string(&v).unwrap();
+        println!("\nRON:\n{}\n", s);
+
+        let s = serde_yaml::to_string(&v).unwrap();
+        println!("\nYAML:\n{}\n", s);
+
+        let s = serde_qs::to_string(&v).unwrap();
+        println!("\nQS:\n{}\n", s);
+
+        let s = serde_lexpr::to_string(&v).unwrap();
+        println!("\nLExPr:\n{}", s);
+    }
 }
