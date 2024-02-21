@@ -12,6 +12,8 @@ jobs:
         run: cargo binstall wasm-pack -y
       - name: Build using wasm-pack
         run: wasm-pack build --target web --release
+      - name: Remove unneccessary gitignore
+        run: rm ./pkg/.gitignore
       - uses: actions/upload-artifact@v4
         with:
           name: github-pages
