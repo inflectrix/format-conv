@@ -7,9 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: jetli/wasm-pack-action@v0.4.0
-      - name: "Move static to pkg"
-        run: cp -r ./static/. pkg
+      - uses: cargo-bins/cargo-binstall@main
+      - name: Install wasm-pack
+        run: cargo binstall wasm-pack
+      - name: Build using wasm-pack
+        run: wasm-pack build --target web --release
       - uses: actions/upload-artifact@v4
         with:
           name: github-pages
