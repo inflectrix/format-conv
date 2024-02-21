@@ -8,9 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: cargo-bins/cargo-binstall@main
-      - uses: actions-rs/toolchain@v1
-        with:
-          target: wasm32-unknown-unknown
+      - run: rustup target add wasm32-unknown-unknown
       - name: Build WASM binary
         run: cargo build --release --target wasm32-unknown-unknown
       - name: Install wasm-bindgen
