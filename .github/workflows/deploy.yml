@@ -30,9 +30,13 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     permissions:
-      pages: write
-      id-token: write
+      contents: write
 
     steps:
-      - uses: actions/deploy-pages@v4
-        id: deployment
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
