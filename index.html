@@ -1,25 +1,25 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <script src="index.js"></script>
+        <script src="index.mjs"></script>
         <title>Format Converter</title>
     </head>
     <body>
         <label for="jsonbox">JSON:</label>
-        <textarea id="jsonbox" rows="25" cols="50" onchange="desJson()"></textarea>
+        <textarea id="jsonbox" rows="25" cols="50" oninput="desJson()"></textarea>
         
         <label for="tomlbox">TOML:</label>
-        <textarea id="tomlbox" rows="25" cols="50" onchange="desToml()"/></textarea> 
+        <textarea id="tomlbox" rows="25" cols="50" oninput="desToml()"/></textarea> 
         <label for="ronbox">RON:</label>
-        <textarea id="ronbox" rows="25" cols="50" onchange="desRon()"/></textarea> 
+        <textarea id="ronbox" rows="25" cols="50" oninput="desRon()"/></textarea> 
 
         <label for="yamlbox">YAML:</label>
-        <textarea id="yamlbox" rows="25" cols="50" onchange="desYaml()"/></textarea> 
+        <textarea id="yamlbox" rows="25" cols="50" oninput="desYaml()"/></textarea> 
 
         <label for="lexprbox">LExPr:</label>
-        <textarea id="lexprbox" rows="25" cols="50" onchange="desLexpr()"/></textarea> 
+        <textarea id="lexprbox" rows="25" cols="50" oninput="desLexpr()"/></textarea> 
 
         <label for="qsbox">QueryString:</label>
-        <input type="text" onchange="desQS()" id="qsbox">
+        <input type="text" oninput="desQS()" id="qsbox">
     </body>
 </html>
