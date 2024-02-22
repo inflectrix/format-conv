@@ -1,0 +1,14 @@
+{
+  "name": "format-conv",
+  "version": "0.1.0",
+  "files": [
+    "format_conv_bg.wasm",
+    "format_conv.js",
+    "format_conv.d.ts"
+  ],
+  "module": "format_conv.js",
+  "types": "format_conv.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

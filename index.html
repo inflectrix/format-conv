@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src="index.js"></script>
+        <title>Format Converter</title>
+    </head>
+    <body>
+        <label for="jsonbox">JSON:</label>
+        <textarea id="jsonbox" rows="50" cols="50" onchange="desJson()"/>
+        <br>
+        <label for="tomlbox">TOML:</label>
+        <textarea id="tomlbox" rows="50" cols="50" onchange="desToml()"/>
+        <br>
+        <label for="ronbox">RON:</label>
+        <textarea id="ronbox" rows="50" cols="50" onchange="desRon()"/>
+        <br>
+        <label for="yamlbox">YAML:</label>
+        <textarea id="yamlbox" rows="50" cols="50" onchange="desYaml()"/>
+        <br>
+        <label for="lexprbox">LExPr:</label>
+        <textarea id="lexprbox" rows="50" cols="50" onchange="desLexpr()"/>
+        <br>
+        <label for="qsbox">QueryString:</label>
+        <input type="text" onchange="desQS()" id="qsbox">
+    </body>
+</html>
