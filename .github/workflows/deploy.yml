@@ -14,8 +14,7 @@ jobs:
       - name: Install wasm-pack
         run: cargo binstall wasm-pack -y
       - name: Build to WASM/JS
-        run: RUST_LOG=info wasm-pack build --release --target web --out-dir ./dist/
-      - run: ls -r ./dist/
+        run: RUST_LOG=info wasm-pack build --release --target web --out-dir ./dist/ && rm ./dist/.gitignore
       - name: Copy files from static
         run: cp -r ./static/. ./dist/
       - run: ls -r ./dist/
