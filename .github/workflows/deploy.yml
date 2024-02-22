@@ -13,7 +13,7 @@ jobs:
       - uses: cargo-bins/cargo-binstall@main
       - name: Install wasm-pack
         run: cargo binstall wasm-pack -y
-      - name: Generate JS bindings for WASM
+      - name: Build to WASM/JS
         run: RUST_LOG=info wasm-pack build --target web --out-dir ./dist
       - name: Copy files from static
         run: cp -r ./static/. ./dist/
