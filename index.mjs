@@ -1,4 +1,4 @@
-import * as FmtConv from "/format_conv";
+import * as FmtConv from "./format_conv";
 
 function updateTextboxes(data) {
     const converted = FmtConv.convert_to_all(data);
